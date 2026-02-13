@@ -1,119 +1,269 @@
 <!DOCTYPE html>
-
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wency Valentin - Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3b82f6',
+            secondary: '#6366f1',
+          }
+        }
+      }
+    }
+  </script>
   <style>
     /* Custom animations */
-    .fade-in { opacity: 0; transform: translateY(20px); animation: fadeIn 1s forwards; }
-    @keyframes fadeIn {
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .fade-in-up { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+    
+    /* Hide scrollbar for clean look */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    .dark ::-webkit-scrollbar-thumb { background: #475569; }
   </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-50 text-gray-800 transition-colors duration-300 dark:bg-gray-900 dark:text-gray-200 font-sans">
 
-  <header class="bg-white shadow-md">
-    <div class="max-w-5xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center">
-      <h1 class="text-3xl font-bold text-gray-900">Wency Valentin</h1>
-      <p class="mt-2 md:mt-0 text-gray-600">Content Moderator | Claims & Appeals Specialist</p>
+  <nav class="fixed w-full top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">
+        WV.
+      </a>
+      
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="#about" class="hover:text-blue-600 dark:hover:text-blue-400 transition">About</a>
+        <a href="#skills" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Skills</a>
+        <a href="#experience" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Experience</a>
+        <a href="#projects" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Projects</a>
+        <a href="#contact" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Contact</a>
+        
+        <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+        </button>
+      </div>
+
+      <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-600 dark:text-gray-300">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
     </div>
-  </header>
 
-  <main class="max-w-5xl mx-auto p-6 space-y-12">
+    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 border-t dark:border-gray-800">
+      <div class="flex flex-col px-6 py-4 space-y-4">
+        <a href="#about" class="block text-gray-700 dark:text-gray-300 hover:text-blue-600">About</a>
+        <a href="#skills" class="block text-gray-700 dark:text-gray-300 hover:text-blue-600">Skills</a>
+        <a href="#experience" class="block text-gray-700 dark:text-gray-300 hover:text-blue-600">Experience</a>
+        <a href="#projects" class="block text-gray-700 dark:text-gray-300 hover:text-blue-600">Projects</a>
+        <a href="#contact" class="block text-gray-700 dark:text-gray-300 hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-```
-<!-- About Me -->
-<section class="fade-in bg-white p-6 rounded-lg shadow-md">
-  <h2 class="text-2xl font-semibold mb-4">About Me</h2>
-  <p>I am a detail-oriented professional with <strong>6+ years of combined experience</strong> in content moderation, healthcare claims processing, and appeals handling. I specialize in policy enforcement, risk assessment, and accurate decision-making in high-volume, back-office and remote environments. I also build internal production tools using AI-assisted scripting to improve workflow efficiency.</p>
-</section>
+  <main class="max-w-4xl mx-auto px-6 pt-32 pb-20 space-y-24">
 
-<!-- Skills -->
-<section class="fade-in bg-white p-6 rounded-lg shadow-md">
-  <h2 class="text-2xl font-semibold mb-4">Core Skills</h2>
-  <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-    <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Content Moderation</li>
-    <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Risk Assessment</li>
-    <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Medical Claims Processing</li>
-    <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Appeals & Dispute Resolution</li>
-    <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Policy Interpretation</li>
-    <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Documentation & Case Analysis</li>
-    <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">QA & Compliance</li>
-    <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">AI-Assisted Scripting</li>
-    <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Time Management</li>
-    <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Confidential Data Handling</li>
-  </ul>
-</section>
+    <section id="hero" class="fade-in-up text-center space-y-6">
+        <div class="relative w-32 h-32 mx-auto mb-6">
+            <div class="w-full h-full rounded-full bg-gradient-to-tr from-blue-500 to-indigo-600 flex items-center justify-center text-white text-3xl font-bold shadow-lg">
+                WV
+            </div>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">
+            Hi, I'm <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Wency Valentin</span>
+        </h1>
+        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            Content Moderation Specialist & Process Analyst specializing in risk assessment, healthcare claims, and AI-assisted workflow optimization.
+        </p>
+        <div class="flex justify-center gap-4 pt-4">
+            <a href="#contact" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition shadow-lg shadow-blue-500/30">Get in Touch</a>
+            <a href="#experience" class="px-6 py-3 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-700 transition">View Work</a>
+        </div>
+    </section>
 
-<!-- Experience -->
-<section class="fade-in bg-white p-6 rounded-lg shadow-md">
-  <h2 class="text-2xl font-semibold mb-4">Professional Experience</h2>
-  <div class="mb-4">
-    <h3 class="text-xl font-bold">Content Moderator – Developer Applications</h3>
-    <p class="italic text-gray-600">Current Role | 1 Year</p>
-    <ul class="list-disc list-inside mt-2">
-      <li>Review developer applications for compliance with platform policies and client guidelines</li>
-      <li>Identify risk indicators, inconsistencies, and potential policy violations</li>
-      <li>Apply consistent judgment to sensitive, high-impact submissions</li>
-      <li>Maintain strict confidentiality and data protection standards</li>
-    </ul>
-  </div>
-  <div>
-    <h3 class="text-xl font-bold">Healthcare Claims & Appeals Processor</h3>
-    <p class="italic text-gray-600">Accenture | 5 Years</p>
-    <ul class="list-disc list-inside mt-2">
-      <li>Process and review medical insurance claims per contractual and regulatory guidelines</li>
-      <li>Handle customer and provider appeals with detailed documentation analysis</li>
-      <li>Identify billing discrepancies, coverage issues, and documentation gaps</li>
-      <li>Maintain accuracy and quality in high-volume workflows</li>
-      <li>Document decisions for audit readiness and quality reviews</li>
-    </ul>
-  </div>
-</section>
+    <section id="about" class="fade-in-up">
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl dark:shadow-none border border-gray-100 dark:border-gray-700">
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+            <span class="text-blue-500">#</span> About Me
+        </h2>
+        <p class="leading-relaxed text-lg text-gray-600 dark:text-gray-300">
+            I am a detail-oriented professional with <strong class="text-blue-600 dark:text-blue-400">6+ years of combined experience</strong> in content moderation, healthcare claims processing, and appeals handling. 
+            <br><br>
+            I specialize in policy enforcement, risk assessment, and accurate decision-making in high-volume, back-office, and remote environments. Beyond the standard workflow, I build internal production tools using <strong class="text-indigo-600 dark:text-indigo-400">AI-assisted scripting</strong> to improve team efficiency.
+        </p>
+      </div>
+    </section>
 
-<!-- Projects -->
-<section class="fade-in bg-white p-6 rounded-lg shadow-md">
-  <h2 class="text-2xl font-semibold mb-4">Projects</h2>
-  <h3 class="font-bold">AI-Assisted Production Tool</h3>
-  <ul class="list-disc list-inside mt-2">
-    <li>Designed and implemented an internal production tool using AI-assisted scripting</li>
-    <li>Applied process improvement mindset while ensuring compliance and data security</li>
-  </ul>
-</section>
+    <section id="skills" class="fade-in-up">
+      <h2 class="text-2xl font-bold mb-8 flex items-center gap-2">
+        <span class="text-blue-500">#</span> Core Skills
+      </h2>
+      <div class="flex flex-wrap gap-3">
+        <span class="px-4 py-2 bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 rounded-lg text-sm font-medium border border-blue-100 dark:border-blue-800 hover:scale-105 transition cursor-default">Content Moderation</span>
+        <span class="px-4 py-2 bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 rounded-lg text-sm font-medium border border-blue-100 dark:border-blue-800 hover:scale-105 transition cursor-default">Risk Assessment</span>
+        <span class="px-4 py-2 bg-indigo-50 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300 rounded-lg text-sm font-medium border border-indigo-100 dark:border-indigo-800 hover:scale-105 transition cursor-default">Medical Claims</span>
+        <span class="px-4 py-2 bg-indigo-50 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300 rounded-lg text-sm font-medium border border-indigo-100 dark:border-indigo-800 hover:scale-105 transition cursor-default">Appeals & Disputes</span>
+        <span class="px-4 py-2 bg-teal-50 text-teal-700 dark:bg-teal-900/30 dark:text-teal-300 rounded-lg text-sm font-medium border border-teal-100 dark:border-teal-800 hover:scale-105 transition cursor-default">QA & Compliance</span>
+        <span class="px-4 py-2 bg-purple-50 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 rounded-lg text-sm font-medium border border-purple-100 dark:border-purple-800 hover:scale-105 transition cursor-default">AI-Assisted Scripting</span>
+        <span class="px-4 py-2 bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 rounded-lg text-sm font-medium border border-gray-200 dark:border-gray-700 hover:scale-105 transition cursor-default">Data Privacy</span>
+      </div>
+    </section>
 
-<!-- Education -->
-<section class="fade-in bg-white p-6 rounded-lg shadow-md">
-  <h2 class="text-2xl font-semibold mb-4">Education</h2>
-  <p><strong>Bachelor of Science in Information Technology</strong><br>Bestlink College of the Philippines</p>
-</section>
+    <section id="experience" class="fade-in-up">
+      <h2 class="text-2xl font-bold mb-8 flex items-center gap-2">
+        <span class="text-blue-500">#</span> Experience
+      </h2>
+      <div class="relative border-l-2 border-gray-200 dark:border-gray-700 ml-3 space-y-12">
+        
+        <div class="relative pl-8">
+            <span class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-600 ring-4 ring-white dark:ring-gray-900"></span>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Content Moderator – Developer Apps</h3>
+                <span class="text-sm font-mono text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/30 px-2 py-1 rounded">Current Role | 1 Year</span>
+            </div>
+            <ul class="space-y-2 text-gray-600 dark:text-gray-400 list-disc list-outside ml-4">
+                <li>Review developer applications for compliance with platform policies.</li>
+                <li>Identify risk indicators and inconsistencies in high-impact submissions.</li>
+                <li>Maintain strict confidentiality and data protection standards.</li>
+            </ul>
+        </div>
 
-<!-- Contact -->
-<section class="fade-in bg-white p-6 rounded-lg shadow-md text-center">
-  <h2 class="text-2xl font-semibold mb-4">Contact</h2>
-  <p>📞 0929 440 7166 | ✉️ wency19valentin@gmail.com</p>
-</section>
-```
+        <div class="relative pl-8">
+            <span class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gray-300 dark:bg-gray-600 ring-4 ring-white dark:ring-gray-900"></span>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Healthcare Claims & Appeals Processor</h3>
+                <span class="text-sm font-mono text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">Accenture | 4 Years</span>
+            </div>
+            <ul class="space-y-2 text-gray-600 dark:text-gray-400 list-disc list-outside ml-4">
+                <li>Processed medical insurance claims per contractual regulatory guidelines.</li>
+                <li>Handled provider appeals with detailed documentation analysis.</li>
+                <li>Identified billing discrepancies and coverage issues to ensure audit readiness.</li>
+            </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="projects" class="fade-in-up">
+        <h2 class="text-2xl font-bold mb-8 flex items-center gap-2">
+            <span class="text-blue-500">#</span> Key Projects
+        </h2>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-100 dark:border-gray-700 hover:shadow-lg transition">
+                <h3 class="text-lg font-bold mb-2 flex items-center">
+                    AI-Assisted Production Tool
+                    <span class="ml-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Automation</span>
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                    Designed an internal tool to automate repetitive tasks, significantly improving team workflow efficiency while ensuring data security.
+                </p>
+                <div class="flex gap-2">
+                    <span class="text-xs font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">Scripting</span>
+                    <span class="text-xs font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">Process Improvement</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="fade-in-up">
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+            <span class="text-blue-500">#</span> Education
+        </h2>
+        <div class="bg-gradient-to-r from-gray-50 to-white dark:from-gray-800 dark:to-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+            <h3 class="font-bold text-lg">Bachelor of Science in Information Technology</h3>
+            <p class="text-gray-600 dark:text-gray-400">Bestlink College of the Philippines</p>
+        </div>
+    </section>
+
+    <section id="contact" class="fade-in-up pb-10">
+      <div class="bg-blue-600 dark:bg-blue-900 rounded-2xl p-8 text-center text-white shadow-lg">
+        <h2 class="text-3xl font-bold mb-4">Let's Connect</h2>
+        <p class="mb-8 text-blue-100">Open for opportunities in Content Moderation and Workflow Analysis.</p>
+        
+        <div class="flex flex-col sm:flex-row justify-center gap-6">
+            <a href="tel:09294407166" class="flex items-center justify-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-full font-bold hover:bg-gray-100 transition">
+                <span>📞</span> 0929 440 7166
+            </a>
+            <a href="mailto:wency19valentin@gmail.com" class="flex items-center justify-center gap-2 bg-blue-700 dark:bg-blue-800 text-white px-6 py-3 rounded-full font-bold hover:bg-blue-800 transition border border-blue-500">
+                <span>✉️</span> wency19valentin@gmail.com
+            </a>
+        </div>
+      </div>
+    </section>
 
   </main>
 
-  <script>
-    // Fade-in animations on scroll
-    const faders = document.querySelectorAll('.fade-in');
-    const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
-    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll){
-      entries.forEach(entry => {
-        if(!entry.isIntersecting) return;
-        entry.target.style.opacity = 1;
-        entry.target.style.transform = 'translateY(0)';
-        appearOnScroll.unobserve(entry.target);
-      });
-    }, appearOptions);
-    faders.forEach(fader => appearOnScroll.observe(fader));
-  </script>
+  <footer class="bg-white dark:bg-gray-900 py-6 text-center border-t dark:border-gray-800">
+      <p class="text-gray-500 dark:text-gray-400 text-sm">© <span id="year"></span> Wency Valentin. All rights reserved.</p>
+  </footer>
 
+  <script>
+    // Set Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Fade In Animation
+    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+    // Dark Mode Logic
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    
+    // Check local storage or system preference
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        lightIcon.classList.remove('hidden');
+    } else {
+        document.documentElement.classList.remove('dark');
+        darkIcon.classList.remove('hidden');
+    }
+
+    themeToggleBtn.addEventListener('click', function() {
+        darkIcon.classList.toggle('hidden');
+        lightIcon.classList.toggle('hidden');
+
+        if (localStorage.getItem('color-theme')) {
+            if (localStorage.getItem('color-theme') === 'light') {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            }
+        } else {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        }
+    });
+
+    // Mobile Menu Logic
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+  </script>
 </body>
 </html>
