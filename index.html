@@ -1,1 +1,120 @@
+<!DOCTYPE html>
 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wency Valentin - Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom animations */
+    .fade-in { opacity: 0; transform: translateY(20px); animation: fadeIn 1s forwards; }
+    @keyframes fadeIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <header class="bg-white shadow-md">
+    <div class="max-w-5xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center">
+      <h1 class="text-3xl font-bold text-gray-900">Wency Valentin</h1>
+      <p class="mt-2 md:mt-0 text-gray-600">Senior Content Moderator | Claims & Appeals Specialist</p>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto p-6 space-y-12">
+
+```
+<!-- About Me -->
+<section class="fade-in bg-white p-6 rounded-lg shadow-md">
+  <h2 class="text-2xl font-semibold mb-4">About Me</h2>
+  <p>I am a detail-oriented professional with <strong>6+ years of combined experience</strong> in content moderation, healthcare claims processing, and appeals handling. I specialize in policy enforcement, risk assessment, and accurate decision-making in high-volume, back-office and remote environments. I also build internal production tools using AI-assisted scripting to improve workflow efficiency.</p>
+</section>
+
+<!-- Skills -->
+<section class="fade-in bg-white p-6 rounded-lg shadow-md">
+  <h2 class="text-2xl font-semibold mb-4">Core Skills</h2>
+  <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+    <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Content Moderation</li>
+    <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Risk Assessment</li>
+    <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Medical Claims Processing</li>
+    <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Appeals & Dispute Resolution</li>
+    <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Policy Interpretation</li>
+    <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Documentation & Case Analysis</li>
+    <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">QA & Compliance</li>
+    <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">AI-Assisted Scripting</li>
+    <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Time Management</li>
+    <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Confidential Data Handling</li>
+  </ul>
+</section>
+
+<!-- Experience -->
+<section class="fade-in bg-white p-6 rounded-lg shadow-md">
+  <h2 class="text-2xl font-semibold mb-4">Professional Experience</h2>
+  <div class="mb-4">
+    <h3 class="text-xl font-bold">Content Moderator – Developer Applications</h3>
+    <p class="italic text-gray-600">Current Role | 1 Year</p>
+    <ul class="list-disc list-inside mt-2">
+      <li>Review developer applications for compliance with platform policies and client guidelines</li>
+      <li>Identify risk indicators, inconsistencies, and potential policy violations</li>
+      <li>Apply consistent judgment to sensitive, high-impact submissions</li>
+      <li>Maintain strict confidentiality and data protection standards</li>
+    </ul>
+  </div>
+  <div>
+    <h3 class="text-xl font-bold">Healthcare Claims & Appeals Processor</h3>
+    <p class="italic text-gray-600">Accenture | 4 Years</p>
+    <ul class="list-disc list-inside mt-2">
+      <li>Process and review medical insurance claims per contractual and regulatory guidelines</li>
+      <li>Handle customer and provider appeals with detailed documentation analysis</li>
+      <li>Identify billing discrepancies, coverage issues, and documentation gaps</li>
+      <li>Maintain accuracy and quality in high-volume workflows</li>
+      <li>Document decisions for audit readiness and quality reviews</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="fade-in bg-white p-6 rounded-lg shadow-md">
+  <h2 class="text-2xl font-semibold mb-4">Projects</h2>
+  <h3 class="font-bold">AI-Assisted Production Tool</h3>
+  <ul class="list-disc list-inside mt-2">
+    <li>Designed and implemented an internal production tool using AI-assisted scripting</li>
+    <li>Automated repetitive tasks to improve workflow efficiency and accuracy</li>
+    <li>Applied process improvement mindset while ensuring compliance and data security</li>
+  </ul>
+</section>
+
+<!-- Education -->
+<section class="fade-in bg-white p-6 rounded-lg shadow-md">
+  <h2 class="text-2xl font-semibold mb-4">Education</h2>
+  <p><strong>Bachelor of Science in Information Technology</strong><br>Bestlink College of the Philippines</p>
+</section>
+
+<!-- Contact -->
+<section class="fade-in bg-white p-6 rounded-lg shadow-md text-center">
+  <h2 class="text-2xl font-semibold mb-4">Contact</h2>
+  <p>📞 0929 440 7166 | ✉️ wency19valentin@gmail.com</p>
+</section>
+```
+
+  </main>
+
+  <script>
+    // Fade-in animations on scroll
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll){
+      entries.forEach(entry => {
+        if(!entry.isIntersecting) return;
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'translateY(0)';
+        appearOnScroll.unobserve(entry.target);
+      });
+    }, appearOptions);
+    faders.forEach(fader => appearOnScroll.observe(fader));
+  </script>
+
+</body>
+</html>
